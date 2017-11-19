@@ -1,0 +1,40 @@
+git 学习历程
+
+
+一、理解git
+git就是一个可以记录文件有任何变动的一个工具，可以对任何文件的版本有一个
+有一个强大的控制，可以追踪修改任何一个提交过的版本，还可以进行分布式控
+制，意思就是不用联网，每个人都可以在自己的计算机上做些修改，然后整合到
+一起，实现真正的分布式控制。
+二、安装和创建git
+现如今git已经可以在Linux、Unix、Mac和windows这些平台上运行。windows平
+台上从https://git-for-windows.github.io下载msysgit的exe程序运行安装即可。
+首先是在本地创建git库：
+$ mkdir +文件位置和文件名（一般多用英文）可以创建一个文件夹
+$ cd +文件名 可以进入到这个文件中，$ cd ..可以回到上一级
+$ pwd可以查看当前工作区的所在路径
+$ cat +文件名 可以查看该文件内容。
+$ rm +文件名 删除文件
+
+上述均不是与git相关的操作，而是cmd里面的通用操作。
+
+现在假设已经选好了文件夹，用$ git init就可在当前文件夹下建立了一个git仓库，现在这个文件夹下的所有文件都可以被git追踪了。接着就将一个文件放到git仓库：
+git版本库 = 暂存区 + commit库
+$ git add +文件名 可将文件添加到暂存区中，
+$ git commit -m”提交说明” 可将暂存区中的文件提交到commit库，并产生了一个本次提交的commit代号。
+这样文件就添加到git仓库里面了。
+三、版本控制
+$ git status查看当前工作状态（工作区、暂存区、commit库），
+$ git diff当前工作区文件和最近一次commit后文件的区别
+$ git log 查看文件的commit日志。（$ git log --pretty=oneline是简化版）
+$ git reflog 用来记录每一次命令
+$ git reset --hard +commit序列号可以实现版本之间的穿越
+$ git reset HEAD readme.txt可以把暂存区中的内容回退到工作区（HEAD表明回退到最近一次的commit版本）
+$ git checkout -- readme.txt 把readme.txt文件在工作区的修改全部撤销，就算readme。txt删除了也可恢复过来。
+$ git rm readme.txt 相当于把删除readme.txt的命令提交到暂存区，此时，若要删除版本库中的readme.txt则用commit命令提交就行，若要撤回则再次调用$ git reset HEAD readme.txt
+四、连接远程库
+以github上的仓库作为远程仓库，首先在github上建立一个learngit仓库：
+则$ git remote add origin git@github.com:github账户名/learngit.git 可以使本地正在操作
+的git库与github上的learngit库相连接，
+$ git push 命令可以将本地库上的commit库里的东西推送到远程库上。
+$ git clone git@github.com:github账户名/learngit.git可以将远程库learngit在本地正在操	作这个目录下面克隆出一个git库
